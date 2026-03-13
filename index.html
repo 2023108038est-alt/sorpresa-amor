@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>Feliz Aniversario ❤️</title>
+<title>Para Dania ❤️</title>
 
 <style>
 
@@ -15,18 +15,13 @@ align-items:center;
 flex-direction:column;
 font-family:Arial;
 background:linear-gradient(#ff9a9e,#fad0c4);
-overflow:hidden;
 text-align:center;
+overflow:hidden;
 }
 
 h1{
 color:white;
 font-size:50px;
-}
-
-p{
-font-size:25px;
-color:white;
 }
 
 button{
@@ -37,6 +32,13 @@ border-radius:10px;
 background:red;
 color:white;
 cursor:pointer;
+}
+
+#mensaje{
+font-size:28px;
+color:white;
+margin-top:20px;
+max-width:600px;
 }
 
 .corazon{
@@ -61,28 +63,31 @@ transform:translateY(100vh);
 
 <body>
 
-<h1>💖 Feliz 2 Meses de Aniversario Dania 💖</h1>
+<h1>Para Ti ❤️</h1>
 
-<p>
-Hoy celebramos 2 meses juntos ❤️  
-Gracias por hacer mi vida más bonita.
-</p>
+<p>Presiona el botón para ver mi sorpresa</p>
 
-<button onclick="mensaje()">Haz clic aquí</button>
+<button onclick="mostrarMensaje()">Haz clic aquí</button>
 
-<p id="texto"></p>
+<p id="mensaje"></p>
 
 <script>
 
-function mensaje(){
-document.getElementById("texto").innerHTML=
-"🌹 Dania, gracias por estos 2 meses maravillosos. Te quiero mucho ❤️";
+function mostrarMensaje(){
+
+document.getElementById("mensaje").innerHTML =
+"💖 Feliz 2 meses de aniversario Dania 💖<br><br>" +
+"Gracias por estos hermosos meses a tu lado. " +
+"Desde que llegaste a mi vida todo es más bonito. " +
+"Eres una persona muy especial para mí y espero que sigamos creando muchos recuerdos juntos. ❤️";
+
 }
 
-function corazones(){
+function crearCorazon(){
 
 let corazon=document.createElement("div");
 corazon.classList.add("corazon");
+
 corazon.innerHTML="❤️";
 
 corazon.style.left=Math.random()*100+"vw";
@@ -95,7 +100,7 @@ corazon.remove();
 
 }
 
-setInterval(corazones,300);
+setInterval(crearCorazon,300);
 
 </script>
 
