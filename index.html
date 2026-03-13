@@ -8,53 +8,38 @@
 
 body{
 margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
+background:black;
+color:white;
 font-family:Arial;
-background:linear-gradient(#ff9a9e,#fad0c4);
 text-align:center;
 overflow:hidden;
 }
 
-h1{
-color:white;
-font-size:50px;
+canvas{
+position:absolute;
+top:0;
+left:0;
 }
 
-button{
-padding:15px 30px;
-font-size:20px;
-border:none;
-border-radius:10px;
-background:red;
-color:white;
-cursor:pointer;
+#contenido{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+display:none;
+}
+
+img{
+width:300px;
+border-radius:20px;
+box-shadow:0 0 30px pink;
 }
 
 #mensaje{
-font-size:28px;
-color:white;
 margin-top:20px;
-max-width:600px;
-}
-
-.corazon{
-position:absolute;
-color:red;
-font-size:20px;
-animation:caer 5s linear infinite;
-}
-
-@keyframes caer{
-0%{
-transform:translateY(-100px);
-}
-100%{
-transform:translateY(100vh);
-}
+font-size:24px;
+max-width:700px;
+line-height:1.6;
 }
 
 </style>
@@ -63,44 +48,86 @@ transform:translateY(100vh);
 
 <body>
 
-<h1>Para Ti ❤️</h1>
+<canvas id="canvas"></canvas>
 
-<p>Presiona el botón para ver mi sorpresa</p>
+<div id="contenido">
 
-<button onclick="mostrarMensaje()">Haz clic aquí</button>
+<img src="foto.jpg">
 
-<p id="mensaje"></p>
+<div id="mensaje">
+
+💖 Feliz 2 meses de aniversario Dania 💖
+
+<br><br>
+
+Hoy cumplimos 2 meses juntos, mi amor Dania.
+Tal vez parezca poco tiempo para muchos, pero para mí han sido dos meses llenos de momentos hermosos, risas y cariño.
+
+<br><br>
+
+Gracias por llegar a mi vida y hacer mis días más felices. Cada momento a tu lado es especial y cada día me haces quererte más.
+
+<br><br>
+
+Espero que este sea solo el comienzo de muchos meses y años juntos.
+Te quiero mucho, Dania. Feliz 2 meses, mi amor. ❤️
+
+</div>
+
+</div>
+
+<audio autoplay loop>
+
+<source src="musica.mp3" type="audio/mpeg">
+
+</audio>
 
 <script>
 
-function mostrarMensaje(){
+const canvas=document.getElementById("canvas")
+const ctx=canvas.getContext("2d")
 
-document.getElementById("mensaje").innerHTML =
-"💖 Feliz 2 meses de aniversario Dania 💖<br><br>" +
-"Gracias por estos hermosos meses a tu lado. " +
-"Desde que llegaste a mi vida todo es más bonito. " +
-"Eres una persona muy especial para mí y espero que sigamos creando muchos recuerdos juntos. ❤️";
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let stars=[]
+
+for(let i=0;i<400;i++){
+
+stars.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2
+
+})
 
 }
 
-function crearCorazon(){
+function draw(){
 
-let corazon=document.createElement("div");
-corazon.classList.add("corazon");
+ctx.fillStyle="black"
+ctx.fillRect(0,0,canvas.width,canvas.height)
 
-corazon.innerHTML="❤️";
+ctx.fillStyle="white"
 
-corazon.style.left=Math.random()*100+"vw";
+stars.forEach(s=>{
 
-document.body.appendChild(corazon);
+ctx.beginPath()
+ctx.arc(s.x,s.y,s.size,0,Math.PI*2)
+ctx.fill()
+
+})
+
+}
+
+setInterval(draw,30)
 
 setTimeout(()=>{
-corazon.remove();
-},5000);
 
-}
+document.getElementById("contenido").style.display="block"
 
-setInterval(crearCorazon,300);
+},5000)
 
 </script>
 
